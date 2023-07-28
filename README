@@ -1,0 +1,27 @@
+Am ales sa folosesc biblioteca nhlomann, deoarece a fost cea sugerata in cadrul cerintei pentru o implementare in C++.
+Am folosit scheletul laboratorului 9 ca punct de plecare pentru tema. In continuare verific ce comanda a fost introdusa:
+	-register:
+	se afiseaza cate un prompt pentru a introduce username ul si parola aferente noului utilizator, si se verifica sa nu contina spatii. In continuare se trimite un post_request cu hostul, ruta de acces si jsonul format cu ajutorul datelor primite de la user. Se porneste conexiunea cu server-ul si daca raspunsul primit contine vreo eroare, se afiseaza eroarea. Altfel user-ul a fost adaugat cu succes
+	
+	-login:
+	se afiseaza cate un prompt pentru a introduce username ul si parola aferente utilizatorului ce doreste sa se conecteze. In continuare se trimite un post_request cu hostul, ruta de acces si jsonul format cu ajutorul datelor primite de la user. Se porneste conexiunea cu server-ul si daca raspunsul primit contine vreo eroare, se afiseaza eroarea. Altfel user-ul a fost conectat cu succes. In cazul in care nu a fost nicio eroare, se pastreaza cookie ul corespunzator logarii user-ului
+	
+	-enter_library:
+	se verifica existenta cookie-ului aferent unui utilizator logat. In cazul in care se incearca accesarea bibliotecii fara a avea vreun utilzator logat, se afiseaza eroarea primita ca raspuns de la server. In caz contrar, este trimis un get_request cu hostul si ruta de acces aferente cererii. Se porneste conexiunea la server, iar daca raspunsul primit contine vreo eroare, aceasta este afisatta. Altfel, este permis accesul in biblioteca, si se retine inca un cookie aferent intrarii in biblioteca. 
+	-get_books
+	se verifica existenta cookieului aferent unui utilizator logat, dar si cel aferent intrarii in biblioteca. In cazul in care cel putin unul din cele 2 nu exista, se afiseaza un mesaj de eroare. Altfel, se trimite un get_request, trimitand si cele 2 cookie uri, apoi se porneste conexiunea cu server-ul. Daca raspunsul primit contine vreo eroare, aceasta este afisata. In caz contrar se afiseaza toate cartile din biblioteca utilizatorului logat.
+	
+	-get_book
+	se verifica existenta cookieului aferent unui utilizator logat, dar si cel aferent intrarii in biblioteca. In cazul in care cel putin unul din cele 2 nu exista, se afiseaza un mesaj de eroare. Altfel, este afisat un prompt pentru a introduce ID-ul cartii ale carei date trebuie afisate. Cu ajutorul acestui ID este completata ruta de acces. (Este verificat si faptul ca ID ul este intr-adevar un numar valid, iar in caz contrar se afiseaza un mesajd e eroare). Se trimite un get_request, trimitand si cele 2 cookie uri, apoi se porneste conexiunea cu server-ul. Daca raspunsul primit contine vreo eroare, aceasta este afisata. In caz contrar se afiseaza datele cartii cu ID ul respectiv din biblioteca utilizatorului logat.
+	
+	-add_book
+	se verifica existenta cookieului aferent unui utilizator logat, dar si cel aferent intrarii in biblioteca. In cazul in care cel putin unul din cele 2 nu exista, se afiseaza un mesaj de eroare. Altfel, este afisat cate un promt pentru fiecare camp al unei carti(titlu, autor, gen, editura, numar de pagini). Se verifica daca ceea ce a fost introdus in campul aferent numarului de pagini este intr-adevar un numar valid. In caz ca nu, este afisat un mesaj de eroare. In caz afirmativ, este trimis un post_request cu hostul, ruta de acces, jsonul format cu datele introduse de utilizator si cele 2 cookie uri. Se porneste conexiunea cu server-ul. Daca raspunsul primit contine vreo eroare, aceasta este afisata. In caz contrar se adauga datele specifice cartii dorite
+	
+	-delete_book
+	se verifica existenta cookieului aferent unui utilizator logat, dar si cel aferent intrarii in biblioteca. In cazul in care cel putin unul din cele 2 nu exista, se afiseaza un mesaj de eroare. Altfel, este afisat un prompt pentru a introduce ID-ul cartii ale carei date trebuie afisate. Cu ajutorul acestui ID este completata ruta de acces. (Este verificat si faptul ca ID ul este intr-adevar un numar valid, iar in caz contrar se afiseaza un mesajd e eroare). Se trimite un delete_request, trimitand si cele 2 cookie uri, apoi se porneste conexiunea cu server-ul. Daca raspunsul primit contine vreo eroare, aceasta este afisata. In caz contrar se sterg datele cartii cu ID ul respectiv din biblioteca utilizatorului logat.
+	
+	-logout
+	se verifica existenta cookie-ului aferent unui utilizator logat. In cazul in care nu este niciun utilizator logat, se afiseaza un mesaj de eroare. Altfel, se trimite un get_request, se porneste conexiunea la server. Daca raspunsul serverului are vreo eroare, se afiseaza. In caz contrar, se reseteaza cookie-urile pentru intrarea in biblioteca si cel pentru utilizator logat
+	
+	-exit
+	se iese din bucla ce primeste si interpreteaza comenzile primite
